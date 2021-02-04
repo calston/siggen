@@ -1,0 +1,226 @@
+---
+view:
+  name: main_screen
+  background: [0, 0, 0]
+  default_font:
+    name: FreeSans
+    size: 18
+    color: [255, 148, 60]
+  widgets:
+    - name: scope
+      type: pyhmi.widgets.LineChart
+      attributes:
+        x: 1
+        y: 4
+        w: -132
+        h: -48
+        y_max: 2048
+        y_min: 1000
+        border: [255, 148, 60]
+        fill: [62, 27, 0]
+
+    - name: txt_span
+      type: pyhmi.widgets.Text
+      attributes:
+        text: "Span:"
+        x: 32
+        y: -40
+        font:
+          name: FreeSans
+          size: 20
+          color: [255, 148, 60]
+
+    - name: txt_center
+      type: pyhmi.widgets.Text
+      attributes:
+        text: "Center:"
+        x: 232
+        y: -40
+        font:
+          name: FreeSans
+          size: 20
+          color: [255, 148, 60]
+
+    - name: txt_rbw
+      type: pyhmi.widgets.Text
+      attributes:
+        text: "RBW:"
+        x: 452
+        y: -40
+        font:
+          name: FreeSans
+          size: 20
+          color: [255, 148, 60]
+
+    - name: grp_spectrum
+      type: pyhmi.widgets.Group
+      attributes:
+        text: Spectrum
+        x: -128
+        y: 0
+        w: -1
+        h: -48
+        border: [255, 148, 60]
+        fill: [32, 32, 32]
+      widgets:
+        - name: btn_span
+          type: pyhmi.widgets.Button
+          actions:
+            on_click: self.span_click
+          attributes:
+            text: Span
+            x: 4
+            y: 20
+            w: -4
+            h: 48
+            border: [255, 148, 60]
+            fill: [132, 56, 0]
+        - name: btn_center
+          type: pyhmi.widgets.Button
+          actions:
+            on_click: self.center_click
+          attributes:
+            text: Center
+            x: 4
+            y: 72
+            w: -4
+            h: 48
+            border: [255, 148, 60]
+            fill: [132, 56, 0]
+        - name: btn_rbw
+          type: pyhmi.widgets.Button
+          actions:
+            on_click: self.rbw_click
+          attributes:
+            text: RBW
+            x: 4
+            y: 124
+            w: -4
+            h: 48
+            border: [255, 148, 60]
+            fill: [132, 56, 0]
+        - name: btn_func
+          type: pyhmi.widgets.Button
+          actions:
+            on_click: self.func_open
+          attributes:
+            text: Func
+            x: 4
+            y: 188
+            w: -4
+            h: 48
+            border: [255, 148, 60]
+            fill: [132, 56, 0]
+
+    - name: grp_center
+      type: pyhmi.widgets.Group
+      actions:
+        on_keydown: val_keydown
+      attributes:
+        text: Center
+        show: False
+        x: 128
+        y: 128
+        w: -128
+        h: -128
+        border: [255, 148, 60]
+        fill: [32, 32, 32]
+      widgets:
+        - name: okay
+          type: pyhmi.widgets.Button
+          actions:
+            on_click: self.center_okay
+          attributes:
+            text: Okay
+            x: -132
+            y: 96
+            w: 128
+            h: 48
+            border: [255, 148, 60]
+            fill: [132, 56, 0]
+        - name: value
+          type: pyhmi.widgets.Text
+          attributes:
+            text: "_"
+            x: 32
+            y: 96
+            font:
+              name: FreeSans
+              size: 48
+              color: [255, 148, 60]
+
+    - name: grp_span
+      type: pyhmi.widgets.Group
+      actions:
+        on_keydown: val_keydown
+      attributes:
+        text: Span
+        show: False
+        x: 128
+        y: 128
+        w: -128
+        h: -128
+        border: [255, 148, 60]
+        fill: [32, 32, 32]
+      widgets:
+        - name: okay
+          type: pyhmi.widgets.Button
+          actions:
+            on_click: self.span_okay
+          attributes:
+            text: Okay
+            x: -132
+            y: 96
+            w: 128
+            h: 48
+            border: [255, 148, 60]
+            fill: [132, 56, 0]
+        - name: value
+          type: pyhmi.widgets.Text
+          attributes:
+            text: "_"
+            x: 32
+            y: 96
+            font:
+              name: FreeSans
+              size: 48
+              color: [255, 148, 60]
+
+    - name: grp_function
+      type: pyhmi.widgets.Group
+      attributes:
+        text: Function generator
+        show: False
+        x: 128
+        y: 128
+        w: -128
+        h: -128
+        border: [255, 148, 60]
+        fill: [32, 32, 32]
+      widgets:
+        - name: frequency
+          type: pyhmi.widgets.SelectablePrecisionValue
+          attributes:
+            x: 1
+            y: 48
+            min_value: 45000000
+            max_value: 4000000000
+            value: 45000000
+            format: "%010d Hz"
+            font:
+              name: FreeSans
+              size: 32
+          actions:
+            on_change: self.set_frequency
+        - name: okay
+          type: pyhmi.widgets.Button
+          actions:
+            on_click: self.func_okay
+          attributes:
+            text: Okay
+            x: -132
+            y: 96
+            w: 128
+            h: 48
+            border: [255, 148, 60]
+            fill: [132, 56, 0]

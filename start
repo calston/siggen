@@ -1,0 +1,8 @@
+#!/home/pi/siggen/ve/bin/python
+from siggen.main import Siggen
+import os
+
+os.chdir('/home/pi/siggen')
+
+if __name__ == "__main__":
+    Siggen().run()
